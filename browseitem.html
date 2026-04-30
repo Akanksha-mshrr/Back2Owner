@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Items - Back2Owner</title>
+    <link rel="stylesheet" href="browseitem.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav id="navbar">
+        <div id="nav-left">
+            <img src="logo_only.svg" id="logo">
+            <span id="brand-name">Back2Owner</span>
+        </div>
+
+        <div id="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="browseitem.html" class="nav-link">Browse</a>
+            <a href="report-lost.html" class="nav-link">Report Lost</a>
+            <a href="report-found.html" class="nav-link">Report Found</a>
+            
+        </div>
+
+        <!-- shown when user is NOT logged in -->
+        <div id="nav-right-logged-out">
+             <button id="login-btn"><i class="fa-regular fa-user"></i> Login</button>
+             <button id="signup-btn">Sign Up</button>
+        </div>
+
+         <!-- shown when user IS logged in  -->
+        <div id="nav-right-login" style="display:none;">
+             <span id="nav-username" ></span>
+             <button id="dashboard-btn">My Dashboard</button>
+             <button id="logout-btn">Logout</button>
+        </div>
+    </nav> 
+
+  
+    
+    <!-- Page Header -->
+    <div id="page-header">
+        <h1>Browse Items</h1>
+        <p>Search through lost and found reports from across campus</p>
+    </div>
+ 
+    <!-- Search + Filter Bar -->
+    <div id="filter-section">
+ 
+        <!-- Search Input -->
+        <div id="search-row">
+            <div id="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Search by item name or description...">
+            </div>
+            <button id="search-btn">Search</button>
+        </div>
+ 
+        <!-- Filters Row -->
+        <div id="filters-row">
+ 
+            <!-- Lost / Found Toggle -->
+            <div class="filter-group">
+                <label class="filter-label">Type</label>
+                <div id="type-toggle">
+                    <button class="toggle-btn active" data-type="all">All</button>
+                    <button class="toggle-btn lost-btn" data-type="lost">Lost</button>
+                    <button class="toggle-btn found-btn" data-type="found">Found</button>
+                </div>
+            </div>
+ 
+            <!-- Category Filter -->
+            <div class="filter-group">
+                <label class="filter-label">Category</label>
+                <select id="category-filter" class="filter-select">
+                    <option value="all">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing & Bags</option>
+                    <option value="documents">ID & Documents</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="stationery">Stationery</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+ 
+            <!-- Location Filter -->
+            <div class="filter-group">
+                <label class="filter-label">Location</label>
+                <select id="location-filter" class="filter-select">
+                    <option value="all">All Locations</option>
+                    <option value="library">Library</option>
+                    <option value="cafeteria">Cafeteria</option>
+                    <option value="hostel">Hostel</option>
+                    <option value="gymkhana">Gymkhana</option>
+                    <option value="lecture-hall">Lecture Hall</option>
+                    <option value="lab">Labs</option>
+                    <option value="ground">Ground / Sports Area</option>
+                </select>
+            </div>
+ 
+            <!-- Date Filter -->
+            <div class="filter-group">
+                <label class="filter-label">Date</label>
+                <select id="date-filter" class="filter-select">
+                    <option value="all">Any Time</option>
+                    <option value="today">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+            </div>
+ 
+            <!-- Clear Filters -->
+            <button id="clear-filters-btn">
+                <i class="fa-solid fa-rotate-left"></i> Clear Filters
+            </button>
+ 
+        </div>
+    </div>
+ 
+    <!-- Results Count -->
+    <div id="results-info">
+        <span id="results-count">Showing 12 items</span>
+    </div>
+ 
+    <!-- Items Grid -->
+    <div id="items-grid">
+ 
+        <div class="item-card" data-id="1" data-type="lost" data-category="accessories" data-location="library" data-date="today">
+            <div class="badge lost-badge">LOST</div>
+            <img src="wallet.jpeg" alt="Black Wallet" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Black Wallet</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Near Central Library Gate</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> Today</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> Accessories</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+        <div class="item-card" data-id="2" data-type="found" data-category="electronics" data-location="library" data-date="today">
+            <div class="badge found-badge">FOUND</div>
+            <img src="headphone.jpeg" alt="Headphone" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Black Headphones</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Near Main Street</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> Yesterday</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> Electronics</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+        <div class="item-card" data-id="3" data-type="lost" data-category="clothing" data-location="cafeteria" data-date="week">
+            <div class="badge lost-badge">LOST</div>
+            <img src="backpack.png" alt="Blue Backpack" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Blue Backpack</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Near Cafeteria</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> 13 June 2026</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> Clothing & Bags</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+        <div class="item-card" data-id="4" data-type="found" data-category="electronics" data-location="gymkhana" data-date="week">
+            <div class="badge found-badge">FOUND</div>
+            <img src="earpods.jpeg" alt="Apple Earpods" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Apple EarPods</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Gymkhana Area</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> 12 June 2026</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> Electronics</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+        <div class="item-card" data-id="5" data-type="lost" data-category="other" data-location="hostel" data-date="month">
+            <div class="badge lost-badge">LOST</div>
+            <img src="water-bottle.png" alt="Red Water Bottle" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Red Water Bottle</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Boys Hostel Mess</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> 26 April 2026</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> Other</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+        <div class="item-card" data-id="6" data-type="found" data-category="documents" data-location="lecture-hall" data-date="today">
+            <div class="badge found-badge">FOUND</div>
+            <img src="id-card.png" alt="Student ID Card" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Student ID Card</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Lecture Hall Block A</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> Today</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> ID & Documents</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+        <div class="item-card" data-id="7" data-type="lost" data-category="electronics" data-location="lab" data-date="week">
+            <div class="badge lost-badge">LOST</div>
+            <img src="rackets.png" alt="Badminton Rackets" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Badminton Rackets</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Gymkhana Area</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> 10 June 2026</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> Other</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+        <div class="item-card" data-id="8" data-type="found" data-category="accessories" data-location="ground" data-date="week">
+            <div class="badge found-badge">FOUND</div>
+            <img src="sportswatch.png" alt="Sports Watch" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Sports Watch</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Sports Ground</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> 11 June 2026</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> Accessories</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+        <div class="item-card" data-id="9" data-type="lost" data-category="stationery" data-location="lecture-hall" data-date="today">
+            <div class="badge lost-badge">LOST</div>
+            <img src="scientific-calc.png" alt="Scientific Calculator" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Scientific Calculator</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Lecture Hall Block B</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> Today</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> Stationery</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+        <div class="item-card" data-id="10" data-type="found" data-category="clothing" data-location="hostel" data-date="month">
+            <div class="badge found-badge">FOUND</div>
+            <img src="blue-jacket.png" alt="Grey Jacket" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Blue Jacket</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Girls Hostel Common Room</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> 5 June 2026</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> Clothing & Bags</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+        <div class="item-card" data-id="11" data-type="lost" data-category="documents" data-location="library" data-date="week">
+            <div class="badge lost-badge">LOST</div>
+            <img src="notebook.png" alt="Notebook" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Exam Notebook</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Reading Room, Library</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> 9 June 2026</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> Stationery</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+        <div class="item-card" data-id="12" data-type="found" data-category="accessories" data-location="cafeteria" data-date="today">
+            <div class="badge found-badge">FOUND</div>
+            <img src="specs.png" alt="Spectacles" class="card-img">
+            <div class="card-body">
+                <h3 class="card-title">Spectacles</h3>
+                <p class="card-detail"><i class="fa-solid fa-location-dot"></i> Cafeteria Table</p>
+                <p class="card-detail"><i class="fa-solid fa-calendar"></i> Today</p>
+                <p class="card-detail"><i class="fa-solid fa-tag"></i> Accessories</p>
+                <button class="view-btn">View Details</button>
+            </div>
+        </div>
+ 
+    </div>
+ 
+    <!-- No Results Message (hidden by default) -->
+    <div id="no-results" style="display:none;">
+        <i class="fa-solid fa-box-open"></i>
+        <p>No items found matching your filters.</p>
+        <button id="reset-btn">Clear Filters</button>
+    </div>
+
+    <!-- footer -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="footer-logo">Back2Owner</span>
+                <p>IIT Patna's official campus lost & found platform. Helping students reconnect with their belongings since 2024.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <a href="browseitem.html">Browse Items</a>
+                    <a href="report-lost.html">Report Lost</a>
+                    <a href="report-found.html">Report Found</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Account</h4>
+                    <a href="login-signup.html">Login</a>
+                    <a href="login-signup.html#signup">Sign Up</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Info</h4>
+                    <a href="about.html">About Us</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Back2Owner · IIT Patna </p>
+        </div>
+    </footer>
+ 
+    <!-- logout confirm popup -->
+
+    <div id="logout-modal" style="display:none;">
+        <div id="logout-box">
+            <h2><i class="fa-solid fa-right-from-bracket"></i> Logout</h2>
+            <p>Are you sure you want to logout?</p>
+            <div id="logout-btns">
+                <button id="confirm-logout-btn">Yes, Logout</button>
+                <button id="cancel-logout-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="browseitem.js"></script>
+
+    
+</body>
+</html>
