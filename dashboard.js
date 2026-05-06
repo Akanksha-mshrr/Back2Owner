@@ -222,3 +222,9 @@ document.getElementById("tab-resolved").onclick = function(){
         }
     }
 }
+
+// auto open contact modal if coming from another page
+var urlParams = new URLSearchParams(window.location.search);
+if(urlParams.get("contact") == "true"){
+    document.getElementById("contact-modal").style.display = "flex";
+}
