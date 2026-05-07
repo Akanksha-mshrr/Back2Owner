@@ -98,6 +98,8 @@ signupBtn.addEventListener("click", function(){
         alert("Passwords do not match! Please check again.");
     } else {
         alert("Account created successfully! Please login.");
+
+       
         // switch back to login view
         document.getElementById("signup-section").style.display = "none";
         document.getElementById("login-section").style.display = "block";
